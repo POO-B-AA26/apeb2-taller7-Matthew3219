@@ -239,12 +239,13 @@ class Teatro {
         System.out.println(entrada);
     }
 
-    public double calcularTotalVentas(int cantidad) {
-        double total = 0;
-        for (Entrada e : entradas) {
-            total += e.calcularPrecio();
+    public double calcularTotalVentas(int id, int cantidad) {
+        Entrada entrada = buscarEntrada(id);
+        if (entrada == null) {
+            System.out.println("Error: No existe ninguna entrada con ID " + id + ".");
+            return 0;
         }
-        return total * cantidad;
+        return entrada.calcularPrecio() * cantidad;
     }
 }
 
@@ -276,27 +277,55 @@ public class Problema_5_EjecutorEntradaTeatro {
         teatro.consultarEntrada(2);
         System.out.println();
         teatro.consultarEntrada(99);
+        System.out.println("===== TOTAL VENTAS =====\n");
+
+        System.out.println("Entrada ID 1 x3: " + teatro.calcularTotalVentas(1, 3));
+
+        System.out.println("Entrada ID 2 x2: " + teatro.calcularTotalVentas(2, 2));
+
+        System.out.println("Entrada ID 3 x5: " + teatro.calcularTotalVentas(3, 5));
+
+        System.out.println("Entrada ID 99 x1: " + teatro.calcularTotalVentas(99, 1));
     }
 }
 /**
  * Run: ===== VENTA DE ENTRADAS =====
  *
- * Entrada generada exitosamente. ID: 1 | Precio: $25.0
+ * Entrada generada exitosamente.
+ * ID: 1 | Precio: $25.0
  *
- * Entrada generada exitosamente. ID: 2 | Precio: $17.0
+ * Entrada generada exitosamente.
+ * ID: 2 | Precio: $17.0
  *
- * Entrada generada exitosamente. ID: 3 | Precio: $40.0
+ * Entrada generada exitosamente. 
+ * ID: 3 | Precio: $40.0
  *
  * Error: No existe la zona 'Inexistente'.
  *
  * ===== CONSULTA DE ENTRADAS =====
  *
- * === Entrada Normal === ID: 1 Comprador: Joel Cabrera Zona: Principal Precio:
+ * === Entrada Normal === 
+ * ID: 1 
+ * Comprador: Joel Cabrera Zona: 
+ * Principal Precio:
  * $25.0
  *
- * === Entrada Reducida (15% descuento) === ID: 2 Comprador: Melany Abad Zona:
- * Central Precio: $17.0
+ * === Entrada Reducida (15% descuento) === 
+ * ID: 2 
+ * Comprador: Melany Abad Zona:
+ * Central Precio:
+ * $17.0
  *
- * Error: No existe ninguna entrada con ID 99. BUILD SUCCESSFUL (total time: 0
- * seconds)
+ * Error: No existe ninguna entrada con ID 99. ===== TOTAL VENTAS =====
+ *
+ * Entrada ID 1 x3: 75.0 
+ * Entrada ID 2 x2: 34.0 
+ * Entrada ID 3 x5: 200.0 
+ * Error: No existe ninguna entrada con ID 99.
+ * Entrada ID 99 x1: 0.0 BUILD SUCCESSFUL
+ * (total time: 1 second)
+ *
+ *
+ *
+ *
  */
