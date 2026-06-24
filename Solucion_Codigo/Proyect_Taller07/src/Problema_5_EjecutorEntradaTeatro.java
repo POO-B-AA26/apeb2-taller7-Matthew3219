@@ -95,7 +95,9 @@ abstract class Entrada {
         this.nombreComprador = nombreComprador;
     }
 
-    public abstract double calcularPrecio();
+    public double calcularPrecio() {
+        return zona.precioNormal;
+    }
 
     @Override
     public String toString() {
@@ -236,6 +238,14 @@ class Teatro {
         }
         System.out.println(entrada);
     }
+
+    public double calcularTotalVentas(int cantidad) {
+        double total = 0;
+        for (Entrada e : entradas) {
+            total += e.calcularPrecio();
+        }
+        return total * cantidad;
+    }
 }
 
 public class Problema_5_EjecutorEntradaTeatro {
@@ -269,34 +279,24 @@ public class Problema_5_EjecutorEntradaTeatro {
     }
 }
 /**
- * Run:
- * ===== VENTA DE ENTRADAS =====
+ * Run: ===== VENTA DE ENTRADAS =====
  *
- *   Entrada generada exitosamente.
- *   ID: 1 | Precio: $25.0
+ * Entrada generada exitosamente. ID: 1 | Precio: $25.0
  *
- *   Entrada generada exitosamente.
- *   ID: 2 | Precio: $17.0
+ * Entrada generada exitosamente. ID: 2 | Precio: $17.0
  *
- *   Entrada generada exitosamente.
- *   ID: 3 | Precio: $40.0
+ * Entrada generada exitosamente. ID: 3 | Precio: $40.0
  *
- *   Error: No existe la zona 'Inexistente'.
+ * Error: No existe la zona 'Inexistente'.
  *
- *   ===== CONSULTA DE ENTRADAS =====
+ * ===== CONSULTA DE ENTRADAS =====
  *
- *   === Entrada Normal ===
- *   ID: 1
- *   Comprador: Joel Cabrera
- *   Zona: Principal
- *   Precio: $25.0
+ * === Entrada Normal === ID: 1 Comprador: Joel Cabrera Zona: Principal Precio:
+ * $25.0
  *
- *   === Entrada Reducida (15% descuento) ===
- *  ID: 2
- *   Comprador: Melany Abad
- *   Zona: Central
- *   Precio: $17.0
+ * === Entrada Reducida (15% descuento) === ID: 2 Comprador: Melany Abad Zona:
+ * Central Precio: $17.0
  *
- *   Error: No existe ninguna entrada con ID 99.
- *   BUILD SUCCESSFUL (total time: 0 seconds)
+ * Error: No existe ninguna entrada con ID 99. BUILD SUCCESSFUL (total time: 0
+ * seconds)
  */
